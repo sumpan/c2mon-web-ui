@@ -14,24 +14,25 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with C2MON. If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
-package cern.c2mon.web.ui.service;
+package cern.c2mon.web.ui.controller;
 
-import static org.junit.Assert.assertTrue;
+import javax.servlet.http.HttpServletRequest;
 
-import org.junit.Test;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-public class RbacTest {
+/**
+ * A controller for the access denied screen. 
+ **/
+@Controller
+@RequestMapping(value = "/accessDenied")
+public class AccessDenied {
 
-  
-  @Test
-  public void testConfigLoaderService() {
-    
-    String configloader_details = "TIM_APPLICATIONS,TIM_WEBCONFIG,RUN ";
-    
-    String[] split_config_details = configloader_details.replace(" ", "").split( ",\\s*" ); // split on commas
-    
-    assertTrue (split_config_details[0].equals("TIM_APPLICATIONS"));
-    assertTrue (split_config_details[1].equals("TIM_WEBCONFIG"));
-    assertTrue (split_config_details[2].equals("RUN"));
-  }
+  @RequestMapping(method = RequestMethod.GET)
+  public String accessDenied(final Model model, final HttpServletRequest request) {
+
+    return "accessDenied";
+  } 
 }

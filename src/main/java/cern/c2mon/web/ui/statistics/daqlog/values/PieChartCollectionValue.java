@@ -14,24 +14,33 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with C2MON. If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
-package cern.c2mon.web.ui.service;
+package cern.c2mon.web.ui.statistics.daqlog.values;
 
-import static org.junit.Assert.assertTrue;
-
-import org.junit.Test;
-
-public class RbacTest {
-
-  
-  @Test
-  public void testConfigLoaderService() {
+public class PieChartCollectionValue extends PieChartValue implements IChartCollectionValue {
     
-    String configloader_details = "TIM_APPLICATIONS,TIM_WEBCONFIG,RUN ";
+    /**
+     * The name of the chart this value is linked with.
+     */
+    private String memberName;
     
-    String[] split_config_details = configloader_details.replace(" ", "").split( ",\\s*" ); // split on commas
+    /**
+     * Implementation of the required interface method. Returns the underlying BarChartValue.
+     */
+    public PieChartValue returnChartValue() {
+        return new PieChartValue(getValue(), getKey());
+    }
     
-    assertTrue (split_config_details[0].equals("TIM_APPLICATIONS"));
-    assertTrue (split_config_details[1].equals("TIM_WEBCONFIG"));
-    assertTrue (split_config_details[2].equals("RUN"));
-  }
+    /**
+     * @return the memberName
+     */
+    public String getMemberName() {
+        return memberName;
+    }
+
+    /**
+     * @param memberName the memberName to set
+     */
+    public void setMemberName(String memberName) {
+        this.memberName = memberName;
+    }
 }

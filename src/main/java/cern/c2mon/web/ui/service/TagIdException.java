@@ -16,22 +16,21 @@
  *****************************************************************************/
 package cern.c2mon.web.ui.service;
 
-import static org.junit.Assert.assertTrue;
+/**
+ * Exception representing invalid tag id or tag not found.
+ */
+public class TagIdException extends Exception {
 
-import org.junit.Test;
-
-public class RbacTest {
-
-  
-  @Test
-  public void testConfigLoaderService() {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
     
-    String configloader_details = "TIM_APPLICATIONS,TIM_WEBCONFIG,RUN ";
-    
-    String[] split_config_details = configloader_details.replace(" ", "").split( ",\\s*" ); // split on commas
-    
-    assertTrue (split_config_details[0].equals("TIM_APPLICATIONS"));
-    assertTrue (split_config_details[1].equals("TIM_WEBCONFIG"));
-    assertTrue (split_config_details[2].equals("RUN"));
-  }
+    /**
+     * Constructs the exception with a given message
+     * @param message exception message
+     */
+    public TagIdException(final String message) {
+        super(message);
+    }
 }

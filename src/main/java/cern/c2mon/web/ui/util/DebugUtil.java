@@ -14,24 +14,37 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with C2MON. If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
-package cern.c2mon.web.ui.service;
+package cern.c2mon.web.ui.util;
 
-import static org.junit.Assert.assertTrue;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
-import org.junit.Test;
+/**
+ * Helper class that contains methods used for debugging.
+ */
+public class DebugUtil {
 
-public class RbacTest {
+  /**
+   * Debug method that saves the given String in a file.
+   * This is usefull to store xml configurations for debugging as they are quite big.
+   * 
+   * @param s The string to save to the file.
+   * @param fileName The name of the file where stuff will be saved to.
+   * 
+   * @throws IOException
+   */
+  public static void writeToFile(final String s, final String fileName)  {
 
-  
-  @Test
-  public void testConfigLoaderService() {
-    
-    String configloader_details = "TIM_APPLICATIONS,TIM_WEBCONFIG,RUN ";
-    
-    String[] split_config_details = configloader_details.replace(" ", "").split( ",\\s*" ); // split on commas
-    
-    assertTrue (split_config_details[0].equals("TIM_APPLICATIONS"));
-    assertTrue (split_config_details[1].equals("TIM_WEBCONFIG"));
-    assertTrue (split_config_details[2].equals("RUN"));
+    try {
+
+      FileWriter fstream = new FileWriter("out" + fileName);
+      BufferedWriter out = new BufferedWriter(fstream);
+      out.write(s);
+      //Close the output stream
+      out.close();
+
+    } catch (Exception e) {
+    }
   }
 }

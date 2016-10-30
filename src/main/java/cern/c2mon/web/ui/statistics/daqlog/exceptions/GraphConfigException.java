@@ -14,24 +14,16 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with C2MON. If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
-package cern.c2mon.web.ui.service;
+package cern.c2mon.web.ui.statistics.daqlog.exceptions;
 
-import static org.junit.Assert.assertTrue;
+/**
+ * Represents an exception related to reading the graph
+ * configuration XML file. Indicates that some compulsory
+ * parameters were not recognized.
+ * 
+ * @author mbrightw
+ *
+ */
+public class GraphConfigException extends Exception {
 
-import org.junit.Test;
-
-public class RbacTest {
-
-  
-  @Test
-  public void testConfigLoaderService() {
-    
-    String configloader_details = "TIM_APPLICATIONS,TIM_WEBCONFIG,RUN ";
-    
-    String[] split_config_details = configloader_details.replace(" ", "").split( ",\\s*" ); // split on commas
-    
-    assertTrue (split_config_details[0].equals("TIM_APPLICATIONS"));
-    assertTrue (split_config_details[1].equals("TIM_WEBCONFIG"));
-    assertTrue (split_config_details[2].equals("RUN"));
-  }
 }

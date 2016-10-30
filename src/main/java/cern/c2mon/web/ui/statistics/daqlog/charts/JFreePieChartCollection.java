@@ -14,24 +14,27 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with C2MON. If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
-package cern.c2mon.web.ui.service;
+package cern.c2mon.web.ui.statistics.daqlog.charts;
 
-import static org.junit.Assert.assertTrue;
+import java.sql.SQLException;
+import java.util.List;
 
-import org.junit.Test;
+import cern.c2mon.web.ui.statistics.daqlog.values.IChartCollectionValue;
 
-public class RbacTest {
+public class JFreePieChartCollection extends JFreeBarChartCollection {
+    /**
+     * Set the chart class at initialisation.
+     */
+    public JFreePieChartCollection() {
+        super();
+        chartClass = JFreePieChart.class;
+    }
 
-  
-  @Test
-  public void testConfigLoaderService() {
-    
-    String configloader_details = "TIM_APPLICATIONS,TIM_WEBCONFIG,RUN ";
-    
-    String[] split_config_details = configloader_details.replace(" ", "").split( ",\\s*" ); // split on commas
-    
-    assertTrue (split_config_details[0].equals("TIM_APPLICATIONS"));
-    assertTrue (split_config_details[1].equals("TIM_WEBCONFIG"));
-    assertTrue (split_config_details[2].equals("RUN"));
-  }
+
+    @Override
+    public List<IChartCollectionValue> getValuesFromDatabase(String tableName) throws SQLException {
+        //retrieve the chart values from the database
+        return mapper.getPieChartCollectionData(tableName);
+    }
+
 }

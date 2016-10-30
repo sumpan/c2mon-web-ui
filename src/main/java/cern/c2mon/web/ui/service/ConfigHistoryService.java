@@ -16,22 +16,23 @@
  *****************************************************************************/
 package cern.c2mon.web.ui.service;
 
-import static org.junit.Assert.assertTrue;
+import java.util.List;
 
-import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-public class RbacTest {
+import cern.c2mon.shared.client.configuration.ConfigurationReportHeader;
 
-  
-  @Test
-  public void testConfigLoaderService() {
-    
-    String configloader_details = "TIM_APPLICATIONS,TIM_WEBCONFIG,RUN ";
-    
-    String[] split_config_details = configloader_details.replace(" ", "").split( ",\\s*" ); // split on commas
-    
-    assertTrue (split_config_details[0].equals("TIM_APPLICATIONS"));
-    assertTrue (split_config_details[1].equals("TIM_WEBCONFIG"));
-    assertTrue (split_config_details[2].equals("RUN"));
+/**
+ * @author Justin Lewis Salmon
+ */
+@Service
+public class ConfigHistoryService {
+
+  @Autowired
+  ConfigLoaderService configLoaderService;
+
+  public List<ConfigurationReportHeader> getCachedReports(boolean refresh) {
+    return configLoaderService.getConfigurationReports(refresh);
   }
 }
